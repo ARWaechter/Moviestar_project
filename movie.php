@@ -5,6 +5,7 @@
 
     // VERIFY USER AUTHENTICATION
     require_once("dao/MovieDAO.php");
+    require_once("dao/ReviewDAO.php");
     require_once("models/Movie.php");
 
     // GET MOVIE ID
@@ -13,6 +14,7 @@
     $movie;
 
     $movieDao = new MovieDAO($conn, $BASE_URL);
+    $reviewDao = new ReviewDAO($conn, $BASE_URL);
     // $message = new Message($BASE_URL);
 
     if(empty($id))
@@ -54,12 +56,13 @@
         {
             $userOwnsMovie = true;
         }
+        
+        $alreadyReviewed = $reviewDao->hasAlreadyReviewed($id, $userData->id);
 
     }
 
     // GET MOVIE REVIEWS
-    $alreadyReviewed = false;
-
+    $movieReviews = $reviewDao->getMoviesReview($id);
 
 ?>
 
@@ -72,7 +75,7 @@
                     <span class="pipe"></span>
                     <span><?= $movie->category ?></span>
                     <span class="pipe"></span>
-                    <span><i class="fas fa-star"></i>9</span>
+                    <span><i class="fas fa-star"> </i><?= $movie->rating ?></span>
                 </p>
                 <iframe src="<?= $movie->trailer ?>" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen ></iframe>
                 <p><?= $movie->description ?></p>
@@ -116,24 +119,12 @@
                 </div>
                 <?php endif; ?>
                 <!-- REVIEW SECTION -->
-                <div class="col-md-12 review">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <div class="profile-image-container review-image" style="background-image: url('<?= $BASE_URL ?>img/users/user.png')"></div>
-                        </div>
-                        <div class="col-md-9 author-datails-container">
-                            <h4 class="author-name">
-                                <a href="#">Alexandre teste</a>
-                            </h4>
-                            <p><i class="fas fa-star"></i>9</p>
-                        </div>
-                        <div class="col-md-12">
-                            <p class="comment-title">Comment:</p>
-                            <p>This is the user comment!!</p>
-                        </div>
-                    </div>
-                </div>
-                
+                    <?php foreach($movieReviews as $review): ?>
+                        <?php require("templates/user_review.php"); ?>
+                    <?php endforeach; ?>
+                    <?php if(count($movieReviews) == 0): ?>
+                        <p class="empty-list">This movie don´t have reviews...</p>
+                    <?php endif; ?>
             </div>
         </div>
     </div>
