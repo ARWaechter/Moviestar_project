@@ -14,9 +14,9 @@
         </div>
         <div id="footer-links-container">
             <ul>
-                <li><a href="#">Add film</a></li>
+                <li><a href="<?= $BASE_URL ?>newmovie.php">Add film</a></li>
                 <li><a href="#">Add review</a></li>
-                <li><a href="#">login / Sign in</a></li>
+                <li><a href="<?= $BASE_URL ?>auth.php">login / Sign in</a></li>
             </ul>
         </div>
         <p>&copy; 2022 Chimia_Dev</p>
