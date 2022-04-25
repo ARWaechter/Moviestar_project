@@ -70,7 +70,7 @@
         <div class="row">
             <div class="offset-md-1 col-md-6 movie-container">
                 <h1 class="page-title"><?= $movie->title ?></h1>
-                <p class="movi-details">
+                <p class="movie-details">
                     <span>Length: <?= $movie->length ?></span>
                     <span class="pipe"></span>
                     <span><?= $movie->category ?></span>

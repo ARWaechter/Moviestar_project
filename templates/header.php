@@ -52,7 +52,7 @@
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <div class="collapse navbar-collapse" id="nav-link">
+            <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
                     <?php if($userData): ?>
                         <li class="nav-item">
