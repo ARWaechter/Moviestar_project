@@ -20,7 +20,7 @@
                 </form>
             </div>
             <div class="col-md-4" id="register-container">
-            <h2>Create account</h2>
+                <h2>Create account</h2>
                 <form action="<?= $BASE_URL ?>auth_process.php" method="post">
                     <input type="hidden" name="type" value="register">
                     <div class="form-group">
