@@ -80,7 +80,7 @@ class UserDAO implements UserDAOInterface
 
     }
     
-    public function verifyToken($protected = true)
+    public function verifyToken($protected = false)
     {
         if(!empty($_SESSION["token"]))
         {
